@@ -1,0 +1,20 @@
+﻿@page
+@model ShoppeWeb.Pages.Categories.DeleteModel
+
+<div>
+    <h1>Delete Category</h1>
+    
+    <form method="post">
+        <div>
+            <input asp-for="Category.id" hidden />
+
+            <label asp-for="Category.Name">Category Name</label>
+            <input asp-for="Category.Name" readonly />
+        </div>
+        <div>
+            <label asp-for="Category.DisplayOrder">Display Order</label>
+            <input asp-for="Category.DisplayOrder" readonly />
+        </div>
+        <button type="submit" class="btn btn-primary">Delete Category</button>
+    </form>
+</div>
