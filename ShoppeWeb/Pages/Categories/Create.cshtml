@@ -1,0 +1,18 @@
+﻿@page
+@model ShoppeWeb.Pages.Categories.CreateModel
+
+<div>
+    <form method="post">
+        <div>
+            <label asp-for=@Model.Category.Name>Category Name</label>
+            <input asp-for=@Model.Category.Name />
+            
+        </div>
+        <div>
+            <label asp-for=@Model.Category.DisplayOrder>Display Order</label>
+            <input asp-for=@Model.Category.DisplayOrder />
+            
+        </div>
+        <button type="submit" class="btn btn-primary">Create Category</button>
+    </form>
+</div>
