@@ -23,6 +23,12 @@ namespace ShoppeWeb.Pages.Categories
 
         public async Task<IActionResult> OnPost()
         {
+            // Custom error
+            if(Category.DisplayOrder == 1)
+            {
+                ModelState.AddModelError(string.Empty, "The DisplayOrder cannot be 1.");
+            }
+
             if(ModelState.IsValid)
             {
                 await _db.Category.AddAsync(Category);
