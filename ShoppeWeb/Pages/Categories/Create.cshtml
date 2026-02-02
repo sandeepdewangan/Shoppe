@@ -4,13 +4,15 @@
 <div>
     <form method="post">
         <div>
-            <label asp-for=@Model.Category.Name>Category Name</label>
-            <input asp-for=@Model.Category.Name />
+            <label asp-for="Category.Name">Category Name</label>
+            <input asp-for="Category.Name" />
+            <span asp-validation-for="Category.Name" class="text-danger"></span>
             
         </div>
         <div>
-            <label asp-for=@Model.Category.DisplayOrder>Display Order</label>
-            <input asp-for=@Model.Category.DisplayOrder />
+            <label asp-for="Category.DisplayOrder">Display Order</label>
+            <input asp-for="Category.DisplayOrder" />
+            <span asp-validation-for="Category.DisplayOrder" class="text-danger"></span>
             
         </div>
         <button type="submit" class="btn btn-primary">Create Category</button>
