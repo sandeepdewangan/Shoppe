@@ -24,15 +24,17 @@ namespace ShoppeWeb.Pages.Categories
         public async Task<IActionResult> OnPost()
         {
             // Custom error
-            if(Category.DisplayOrder == 1)
+            if (Category.DisplayOrder == 1)
             {
                 ModelState.AddModelError(string.Empty, "The DisplayOrder cannot be 1.");
             }
 
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 await _db.Category.AddAsync(Category);
                 await _db.SaveChangesAsync();
+                // TempData for one time message, survives a redirect only.
+                TempData["success"] = "Category created successfully";
                 return RedirectToPage("Index");
             }
             return Page();
