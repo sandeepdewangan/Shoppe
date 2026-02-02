@@ -1,0 +1,28 @@
+﻿@page
+@model ShoppeWeb.Pages.Categories.EditModel
+
+<div>
+    <h1>Update Category</h1>
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <form method="post">
+        <div>
+            <input asp-for="Category.id" hidden />
+
+            <label asp-for="Category.Name">Category Name</label>
+            <input asp-for="Category.Name" />
+            <span asp-validation-for="Category.Name" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="Category.DisplayOrder">Display Order</label>
+            <input asp-for="Category.DisplayOrder" />
+            <span asp-validation-for="Category.DisplayOrder" class="text-danger"></span>
+            
+        </div>
+        <button type="submit" class="btn btn-primary">Update Category</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
