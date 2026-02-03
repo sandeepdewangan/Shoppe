@@ -10,5 +10,6 @@ namespace ShoppeWeb.DataAccess.Data
         }
         // Register the table
         public DbSet<Category> Category { get; set; }
+        public DbSet<FoodType> FoodType { get; set; }
     }
 }

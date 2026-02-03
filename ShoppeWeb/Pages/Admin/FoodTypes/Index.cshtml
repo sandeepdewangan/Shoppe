@@ -1,0 +1,30 @@
+﻿@page
+@model ShoppeWeb.Pages.Admin.FoodTypes.IndexModel
+<partial name="_Notification" />
+
+<div>
+    <h1>Food Types</h1>
+    <a asp-page="create" class="btn btn-outline-primary">Create Food Type</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Food Type</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ft in Model.FoodTypes)
+            {
+                <tr>
+                    <td>@ft.id</td>
+                    <td>@ft.Type</td>
+                    <td>
+                        <a asp-page="Edit" asp-route-id="@ft.id" class="btn btn-secondary btn-sm">Edit</a>
+                        <a asp-page="Delete" asp-route-id="@ft.id" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,19 @@
+﻿@page
+@model ShoppeWeb.Pages.Admin.FoodTypes.CreateModel
+
+<div>
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <form method="post">
+        <div>
+            <label asp-for="FoodType.Type">Food Type</label>
+            <input asp-for="FoodType.Type" />
+            <span asp-validation-for="FoodType.Type" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Create Food Type</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

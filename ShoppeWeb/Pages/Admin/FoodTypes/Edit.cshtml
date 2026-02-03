@@ -1,0 +1,23 @@
+﻿@page
+@model ShoppeWeb.Pages.Admin.FoodTypes.EditModel
+
+<div>
+    <h1>Update Food Type</h1>
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <form method="post">
+        <div>
+            <input asp-for="FoodType.id" hidden />
+
+            <label asp-for="FoodType.Type">Category Name</label>
+            <input asp-for="FoodType.Type" />
+            <span asp-validation-for="FoodType.Type" class="text-danger"></span>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Update Food Type</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
