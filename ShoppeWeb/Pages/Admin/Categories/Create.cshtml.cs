@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using ShoppeWeb.DataAccess.Data;
+using Shoppe.DataAccess.Repository;
 using ShoppeWeb.Models;
 
 
@@ -8,14 +8,14 @@ namespace ShoppeWeb.Pages.Admin.Categories
 {
     public class CreateModel : PageModel
     {
-        public readonly ApplicationDbContext _db;
-
         [BindProperty]
         public Category Category { get; set; }
 
-        public CreateModel(ApplicationDbContext db)
+        private readonly ICategoryRepository _catDb;
+
+        public CreateModel(ICategoryRepository catDb)
         {
-            _db = db;
+            _catDb = catDb;
 
         }
         public void OnGet()
@@ -32,8 +32,8 @@ namespace ShoppeWeb.Pages.Admin.Categories
 
             if (ModelState.IsValid)
             {
-                await _db.Category.AddAsync(Category);
-                await _db.SaveChangesAsync();
+                _catDb.Add(Category);
+                _catDb.Save();
                 // TempData for one time message, survives a redirect only.
                 TempData["success"] = "Category created successfully";
                 return RedirectToPage("Index");
