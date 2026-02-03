@@ -1,40 +1,41 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using ShoppeWeb.Data;
+using ShoppeWeb.DataAccess.Data;
 using ShoppeWeb.Models;
 
 
-namespace ShoppeWeb.Pages.Categories
+namespace ShoppeWeb.Pages.Admin.Categories
 {
-    [BindProperties]
-    public class EditModel : PageModel
+    public class CreateModel : PageModel
     {
         public readonly ApplicationDbContext _db;
 
+        [BindProperty]
         public Category Category { get; set; }
 
-        public EditModel(ApplicationDbContext db)
+        public CreateModel(ApplicationDbContext db)
         {
             _db = db;
 
         }
-        public void OnGet(int id)
+        public void OnGet()
         {
-            Category = _db.Category.Find(id);
         }
 
         public async Task<IActionResult> OnPost()
         {
             // Custom error
-            if(Category.DisplayOrder == 1)
+            if (Category.DisplayOrder == 1)
             {
                 ModelState.AddModelError(string.Empty, "The DisplayOrder cannot be 1.");
             }
 
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                _db.Category.Update(Category);
+                await _db.Category.AddAsync(Category);
                 await _db.SaveChangesAsync();
+                // TempData for one time message, survives a redirect only.
+                TempData["success"] = "Category created successfully";
                 return RedirectToPage("Index");
             }
             return Page();

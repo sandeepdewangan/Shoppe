@@ -1,9 +1,8 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using ShoppeWeb.Data;
+using ShoppeWeb.DataAccess.Data;
 using ShoppeWeb.Models;
 
-namespace ShoppeWeb.Pages.Categories
+namespace ShoppeWeb.Pages.Admin.Categories
 {
     public class IndexModel : PageModel
     {

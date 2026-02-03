@@ -1,19 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using ShoppeWeb.Data;
+using ShoppeWeb.DataAccess.Data;
 using ShoppeWeb.Models;
 
 
-namespace ShoppeWeb.Pages.Categories
+namespace ShoppeWeb.Pages.Admin.Categories
 {
     [BindProperties]
-    public class DeleteModel : PageModel
+    public class EditModel : PageModel
     {
         public readonly ApplicationDbContext _db;
 
         public Category Category { get; set; }
 
-        public DeleteModel(ApplicationDbContext db)
+        public EditModel(ApplicationDbContext db)
         {
             _db = db;
 
@@ -25,11 +25,15 @@ namespace ShoppeWeb.Pages.Categories
 
         public async Task<IActionResult> OnPost()
         {
-
-            var catFromDb = _db.Category.Find(Category.id);
-            if (catFromDb != null)
+            // Custom error
+            if(Category.DisplayOrder == 1)
             {
-                _db.Category.Remove(catFromDb);
+                ModelState.AddModelError(string.Empty, "The DisplayOrder cannot be 1.");
+            }
+
+            if(ModelState.IsValid)
+            {
+                _db.Category.Update(Category);
                 await _db.SaveChangesAsync();
                 return RedirectToPage("Index");
             }

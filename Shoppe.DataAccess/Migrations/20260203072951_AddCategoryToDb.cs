@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace ShoppeWeb.Migrations
+namespace Shoppe.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class AddCategoryToDb : Migration
