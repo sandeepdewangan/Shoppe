@@ -31,6 +31,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Admin/FoodTypes/Index">Food Types</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Admin/MenuItems/Index">Menu Items</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -51,6 +54,9 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- Place the first <script> tag in your HTML's <head> -->
+    <script src="https://cdn.tiny.cloud/1/j4gxvbkbhgr6t6hc40td1s5u1o4ozt806ee1kmfw6kq578az/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
+
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

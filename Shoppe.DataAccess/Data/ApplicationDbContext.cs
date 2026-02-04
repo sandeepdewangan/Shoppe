@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Shoppe.Models;
 using ShoppeWeb.Models;
 
 namespace ShoppeWeb.DataAccess.Data
@@ -11,5 +12,6 @@ namespace ShoppeWeb.DataAccess.Data
         // Register the table
         public DbSet<Category> Category { get; set; }
         public DbSet<FoodType> FoodType { get; set; }
+        public DbSet<MenuItem> MenuItem { get; set; }
     }
 }

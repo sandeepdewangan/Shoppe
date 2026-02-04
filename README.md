@@ -29,4 +29,12 @@ Create a class library for, `Shoppe.DataAccess`, `Shoppe.Models`, `Shoppe.utils`
 
 Put all related files in respective library.
 
+## Menu Items Features
 
+1. Upload Image
+
+2. Document formatter using `tiny`
+
+3. Upsert (Single page for update & insert)
+
+4. 

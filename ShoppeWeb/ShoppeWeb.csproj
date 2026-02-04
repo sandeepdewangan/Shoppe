@@ -20,4 +20,8 @@
     <ProjectReference Include="..\Shoppe.Models\Shoppe.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\menu_items\" />
+  </ItemGroup>
+
 </Project>

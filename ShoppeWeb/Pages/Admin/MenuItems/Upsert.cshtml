@@ -1,0 +1,71 @@
+﻿@page
+@model ShoppeWeb.Pages.Admin.MenuItems.CreateModel
+
+
+
+<div>
+    <form method="post" enctype="multipart/form-data">
+        <h1 class="text-lg">@(Model.MenuItem.Id != 0 ? "Update": "Insert") Menu Item</h1>
+        <div>
+            <label asp-for="MenuItem.Name">Menu Item Name</label>
+            <input asp-for="MenuItem.Name" />
+            <span asp-validation-for="MenuItem.Name" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="MenuItem.Description">Description</label>
+            <textarea asp-for="MenuItem.Description"></textarea>
+            <span asp-validation-for="MenuItem.Description" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="MenuItem.Price">Price</label>
+            <input asp-for="MenuItem.Price" />
+            <span asp-validation-for="MenuItem.Price" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="MenuItem.Image">Image</label>
+            <input type="file" name="productImage" id="productImage" />
+        </div>
+        <div>
+            <label asp-for="MenuItem.FoodTypeId">Food Type</label>
+            <select asp-for="MenuItem.FoodTypeId" asp-items="Model.FoodTypeList">
+                <option disabled selected>Select Food Type</option>
+            </select>
+            <span asp-validation-for="MenuItem.FoodTypeId" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="MenuItem.CategoryId">Category</label>
+            <select asp-for="MenuItem.CategoryId" asp-items="Model.CategoryList">
+                <option disabled selected>Select Category</option>
+            <</select>
+            <span asp-validation-for="MenuItem.CategoryId" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create Menu Item</button>
+    </form>
+</div>
+
+@section Scripts {
+    <!-- Place the following <script> and <textarea> tags your HTML's <body> -->
+    <script>
+        tinymce.init({
+          selector: 'textarea',
+          plugins: [
+            // Core editing features
+            'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
+            // Your account includes a free trial of TinyMCE premium features
+            // Try the most popular premium features until Feb 18, 2026:
+            'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'advtemplate', 'ai', 'uploadcare', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown','importword', 'exportword', 'exportpdf'
+          ],
+          toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+          tinycomments_mode: 'embedded',
+          tinycomments_author: 'Author name',
+          mergetags_list: [
+            { value: 'First.Name', title: 'First Name' },
+            { value: 'Email', title: 'Email' },
+          ],
+          ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
+          uploadcare_public_key: 'b0e6788f2c645904a165',
+        });
+    </script>
+    <partial name="_ValidationScriptsPartial" />
+}

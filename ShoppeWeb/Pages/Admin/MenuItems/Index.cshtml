@@ -1,0 +1,40 @@
+﻿@page
+@model ShoppeWeb.Pages.Admin.MenuItems.IndexModel
+<partial name="_Notification" />
+
+<div>
+    <h1>Categories</h1>
+    <a asp-page="Upsert" class="btn btn-outline-primary">Create Menu Item</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Category Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Image</th>
+                <th scope="col">Price</th>
+                <th scope="col">Food Type</th>
+                <th scope="col">Category</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.MenuItems)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.Description</td>
+                    <td>@item.Image</td>
+                    <td>@item.Price</td>
+                    <td>@item.FoodTypeId</td>
+                    <td>@item.CategoryId</td>
+                    <td>
+                        <a asp-page="Upsert" asp-route-id="@item.Id" class="btn btn-secondary btn-sm">Edit</a>
+                        <a asp-page="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
