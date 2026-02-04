@@ -7,6 +7,13 @@
     <form method="post" enctype="multipart/form-data">
         <h1 class="text-lg">@(Model.MenuItem.Id != 0 ? "Update": "Insert") Menu Item</h1>
         <div>
+            @if(Model.MenuItem.Id != 0)
+                {
+                    <img src="@Model.MenuItem.Image" width="100" />
+                }
+            </div>
+        <input asp-for="MenuItem.Id" hidden />
+        <div>
             <label asp-for="MenuItem.Name">Menu Item Name</label>
             <input asp-for="MenuItem.Name" />
             <span asp-validation-for="MenuItem.Name" class="text-danger"></span>
