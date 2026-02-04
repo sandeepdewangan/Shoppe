@@ -2,6 +2,7 @@
 @model ShoppeWeb.Pages.Admin.MenuItems.IndexModel
 <partial name="_Notification" />
 
+
 <div>
     <h1>Categories</h1>
     <a asp-page="Upsert" class="btn btn-outline-primary">Create Menu Item</a>
@@ -31,10 +32,31 @@
                     <td>@item.CategoryId</td>
                     <td>
                         <a asp-page="Upsert" asp-route-id="@item.Id" class="btn btn-secondary btn-sm">Edit</a>
-                        <a asp-page="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@item.Id" id="deleteForm">
+                            <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete()">Delete</button>
+                        </form>
+
+                        
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
+
+<script>
+    function confirmDelete(){
+         Swal.fire({
+                  title: "Do you want to delete the record?",
+                  showDenyButton: true,
+                  showCancelButton: true,
+                  confirmButtonText: "Yes",
+                  denyButtonText: `No`
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    document.getElementById('deleteForm').submit();
+                  } 
+                });
+    }
+               
+</script>

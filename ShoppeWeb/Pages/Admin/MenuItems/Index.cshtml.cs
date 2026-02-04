@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Shoppe.Models;
 using ShoppeWeb.DataAccess.Data;
 using ShoppeWeb.Models;
@@ -19,6 +20,21 @@ namespace ShoppeWeb.Pages.Admin.MenuItems
         public void OnGet()
         {
             MenuItems = _db.MenuItem;
+        }
+
+        public async Task<IActionResult> OnPostDelete(int id)
+        {
+            // delete logic
+            var fromDb = await _db.MenuItem.FindAsync(id);
+
+            if (fromDb == null)
+            {
+                return NotFound();
+            }
+
+            _db.MenuItem.Remove(fromDb);
+            await _db.SaveChangesAsync();
+            return RedirectToPage();
         }
     }
 }
