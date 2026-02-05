@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="Shoppe.DataAccess/Shoppe.DataAccess.csproj" Id="3513571b-f852-4409-8b34-1974bca5fa47" />
   <Project Path="Shoppe.Models/Shoppe.Models.csproj" Id="523819f9-a43c-46d0-98d1-61b0c415a1c5" />
+  <Project Path="Shoppe.Utils/Shoppe.Utils.csproj" Id="85d8f4bb-0e38-428b-89ca-ccf0424362b9" />
   <Project Path="ShoppeWeb/ShoppeWeb.csproj" />
 </Solution>

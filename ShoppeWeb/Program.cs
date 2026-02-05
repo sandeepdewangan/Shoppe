@@ -3,6 +3,8 @@ using Shoppe.DataAccess.CategoryRepository;
 using Shoppe.DataAccess.Repository;
 using ShoppeWeb.DataAccess.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Shoppe.Utils;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +16,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql
         builder.Configuration.GetConnectionString("DefaultConnection")
     ));
 
-builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<ApplicationDbContext>();
+// for accessing role, we need this.
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+// for configuring email services
+builder.Services.AddSingleton<IEmailSender, EmailSender>();
 // Category repository dependency injection
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
