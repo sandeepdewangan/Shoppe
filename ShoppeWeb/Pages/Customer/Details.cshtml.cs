@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -5,9 +6,10 @@ using Shoppe.Models;
 using ShoppeWeb.DataAccess.Data;
 using System.ComponentModel.DataAnnotations;
 
+
 namespace ShoppeWeb.Pages.Customer
 {
-    
+    [Authorize]
     public class DetailsModel : PageModel
     {
         public readonly ApplicationDbContext _db;

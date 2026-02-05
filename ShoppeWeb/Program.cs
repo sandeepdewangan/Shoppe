@@ -22,6 +22,13 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkSto
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
 // Category repository dependency injection
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+// for authorization -> user redirects
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Identity/Account/Login";
+    options.LogoutPath = "/Identity/Account/Logout";
+    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+});
 
 var app = builder.Build();
 
