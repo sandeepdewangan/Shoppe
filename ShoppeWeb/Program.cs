@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Shoppe.DataAccess.CategoryRepository;
 using Shoppe.DataAccess.Repository;
 using ShoppeWeb.DataAccess.Data;
+using Microsoft.AspNetCore.Identity;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(
         builder.Configuration.GetConnectionString("DefaultConnection")
     ));
+
+builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<ApplicationDbContext>();
 // Category repository dependency injection
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
