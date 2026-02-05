@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using Shoppe.Models;
 
 namespace ShoppeWeb.Areas.Identity.Pages.Account
 {
@@ -97,6 +98,13 @@ namespace ShoppeWeb.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Required]
+            public string FirstName { get; set; }
+            [Required]
+            public string LastName { get; set; }
+            [Required]
+            public string PhoneNumber { get; set; }
         }
 
 
@@ -116,6 +124,12 @@ namespace ShoppeWeb.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+
+                // Will create user and insert into db, all extend fields will be added.
+                user.FirstName = Input.FirstName;
+                user.LastName = Input.LastName;
+                user.PhoneNumber = Input.PhoneNumber;
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
@@ -154,11 +168,12 @@ namespace ShoppeWeb.Areas.Identity.Pages.Account
             return Page();
         }
 
-        private IdentityUser CreateUser()
+        private ApplicationUser CreateUser()
         {
             try
             {
-                return Activator.CreateInstance<IdentityUser>();
+                //Now first name and last name extended by us will be inserted into the db.
+                return Activator.CreateInstance<ApplicationUser>();
             }
             catch
             {
