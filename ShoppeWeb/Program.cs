@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Shoppe.DataAccess.CategoryRepository;
+using Shoppe.DataAccess.DbInitializer;
 using Shoppe.DataAccess.Repository;
 using Shoppe.Utils;
 using ShoppeWeb.DataAccess.Data;
@@ -22,6 +23,8 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkSto
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
 // Category repository dependency injection
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+// Add db seeding services
+builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 // for authorization -> user redirects
 builder.Services.ConfigureApplicationCookie(options =>
 {
@@ -51,6 +54,8 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseRouting();
+// Call seed database to run
+SeedDatabase();
 
 app.UseAuthorization();
 
@@ -61,3 +66,14 @@ app.MapRazorPages()
    .WithStaticAssets();
 
 app.Run();
+
+
+
+void SeedDatabase()
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+        dbInitializer.Initialize();
+    }
+}
