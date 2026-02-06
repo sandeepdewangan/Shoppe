@@ -20,7 +20,9 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand" asp-page="/Customer/Cart">🛒</a>
+                <a class="navbar-brand" asp-page="/Customer/Cart">
+                @await Component.InvokeAsync("ShoppingCartCount")    
+                </a>
 
                 <partial name="_LoginPartial" />
                 <div class="dropdown">
