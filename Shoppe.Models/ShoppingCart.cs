@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace Shoppe.Models
 {
@@ -11,7 +8,7 @@ namespace Shoppe.Models
         public int Id { get; set; }
         public int MenuItemId { get; set; }
         [ForeignKey("MenuItemId")]
-        [NotMapped]
+        //[NotMapped] -- should not be used, navigation prop doesnot work if we use this.
         public MenuItem MenuItem { get; set; }
 
         [Range(1, 100, ErrorMessage = "Please select a count between 1 and 100")]
@@ -19,7 +16,7 @@ namespace Shoppe.Models
 
         public string ApplicationUserId { get; set; }
         [ForeignKey("ApplicationUserId")]
-        [NotMapped]
+        //[NotMapped] -- should not be used
         public ApplicationUser ApplicationUser { get; set; }
     }
 }

@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Shoppe.Models;
 using ShoppeWeb.DataAccess.Data;
-using ShoppeWeb.Models;
-using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 
 
@@ -38,14 +36,14 @@ namespace ShoppeWeb.Pages.Customer
             };
         }
 
-    
+
         public async Task<IActionResult> OnPost()
         {
             // add to db
             _db.ShoppingCart.Add(ShoppingCart);
             _db.SaveChangesAsync();
 
-            return RedirectToPage("Index");
+            return RedirectToPage("Cart");
         }
     }
 }
