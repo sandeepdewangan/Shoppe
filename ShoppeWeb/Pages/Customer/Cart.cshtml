@@ -3,6 +3,9 @@
 @{
 }
 
+<form method="post">
+    
+
 <div class="container my-5">
     <h2 class="mb-4 text-center">🛒 Shopping Cart</h2>
 
@@ -22,8 +25,9 @@
                         </thead>
                         <tbody>
 
-                            <!-- Product 1 -->
-                            @foreach (var item in Model.ShoppingCartList)
+                                @if(Model.ShoppingCartList != null)
+                                    {
+                                        @foreach (var item in Model.ShoppingCartList)
                             {
                                 <tr>
                                     <td>
@@ -39,12 +43,26 @@
                                         </div>
                                     </td>
                                     <td>₹@item.MenuItem.Price</td>
+                                    
                                     <td>
-                                        <input type="number" class="form-control" value="@item.Count" min="1" style="width:80px;">
+                                        <button type="submit" class="btn btn-sm" asp-page-handler="Increment" asp-route-cartId="@item.Id">➕</button>
+                                        <input class="form-control" value="@item.Count" min="1" style="width:80px;">
+                                        <button type="submit" class="btn btn-sm" asp-page-handler="Decrement" asp-route-cartId="@item.Id">➖</button>
+
+                                        
                                     </td>
-                                    <td>₹2,000</td>
+
+                                    <td>
+                                        ₹2,000
+                                        <button type="submit" class="btn btn-sm" asp-page-handler="Remove" asp-route-cartId="@item.Id">🗑️</button>
+                                    </td>
+
                                 </tr>
                             }
+                                    }
+                                 else{
+                                       <p>Shopping cart is empty</p>
+                                   }
 
                         </tbody>
                     </table>
@@ -94,3 +112,4 @@
     </div>
 </div>
 
+</form>
