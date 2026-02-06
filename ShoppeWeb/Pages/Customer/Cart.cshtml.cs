@@ -62,6 +62,11 @@ namespace ShoppeWeb.Pages.Customer
             {
                 _db.ShoppingCart.Remove(item);
                 await _db.SaveChangesAsync();
+
+                // Set Session
+                HttpContext.Session.SetInt32("cart", 5);
+                // Get Session
+                HttpContext.Session.GetInt32("cart");
             }
 
             return RedirectToPage("/Customer/Cart");
