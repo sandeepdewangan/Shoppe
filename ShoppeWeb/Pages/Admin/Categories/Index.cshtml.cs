@@ -1,9 +1,12 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Shoppe.Utils;
 using ShoppeWeb.DataAccess.Data;
 using ShoppeWeb.Models;
 
 namespace ShoppeWeb.Pages.Admin.Categories
 {
+    [Authorize(Roles = $"{SD.ManagerRole}, {SD.KitchenRole}")]
     public class IndexModel : PageModel
     {
         private readonly ApplicationDbContext _db;
